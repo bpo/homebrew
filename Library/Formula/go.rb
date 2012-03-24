@@ -10,7 +10,7 @@ class Go < Formula
   skip_clean 'bin'
 
   def options
-     [["--run-tests", "Test the new build before installing"]]
+     [["--with-test", "Test the new build before installing"]]
   end
 
   def install
@@ -21,7 +21,7 @@ class Go < Formula
       File.open('VERSION', 'w') {|f| f.write(version) }
 
       cd 'src' do
-        if ARGV.include? "--run-tests"
+        if ARGV.include? "--with-test"
           system "./all.bash"
         else
           system "./make.bash"
