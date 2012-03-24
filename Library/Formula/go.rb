@@ -13,6 +13,10 @@ class Go < Formula
      [["--with-test", "Test the new build before installing"]]
   end
 
+  def test
+    system "go version"
+  end
+
   def install
     prefix.install %w[src include test doc api misc lib favicon.ico AUTHORS]
     cd prefix do
