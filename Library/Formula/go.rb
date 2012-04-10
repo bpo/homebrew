@@ -38,7 +38,7 @@ class Go < Formula
 
   def test
     cd "#{prefix}/src" do
-      system "./run.bash --no-rebuild"
+      system './run.bash --no-rebuild'
     end
   end
 end
