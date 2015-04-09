@@ -1,7 +1,7 @@
 class Ec2ApiTools < Formula
   homepage "https://aws.amazon.com/developertools/351"
-  url "https://ec2-downloads.s3.amazonaws.com/ec2-api-tools-1.7.3.0.zip"
-  sha1 "c2a77b6c3b9fe05fdf4a126d03f8cd07791aaa50"
+  url "https://ec2-downloads.s3.amazonaws.com/ec2-api-tools-1.7.3.2.zip"
+  sha1 "54bb5e1b4a562a8383cfa4457ae244e65d1afc2d"
 
   depends_on :java
 
