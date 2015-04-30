@@ -7,16 +7,17 @@ class Influxdb < Formula
   sha1 "a5686d0374ec5ab616e335e9c5fb1aeacd17fb00"
 
   bottle do
-    revision 1
-    sha1 "5ef1d6ea8124f7047a818bf3a50830ce6d3d8098" => :yosemite
-    sha1 "c6ee43baa6927de07578ac9e20afa5bb9b39fba1" => :mavericks
-    sha1 "d8e036216607ffd611fe21bdaeb642462f024b38" => :mountain_lion
+    cellar :any
+    revision 2
+    sha256 "bb246da9efb02f1dfaf3b401b1c6a5058de82081e4c31526228cb5fb486df787" => :yosemite
+    sha256 "abb2b857200ce69022981b8a7694f3fe4f24fadf905e3c6c3236a3a0ad946e7a" => :mavericks
+    sha256 "b3b3c081494c29f7fc0387d9e746732f3ac0cdaa480e891468b020ad5a3c9ed8" => :mountain_lion
   end
 
   devel do
-    url "https://github.com/influxdb/influxdb/archive/v0.9.0-rc19.tar.gz"
-    sha1 "63002564c9ed27b5fe88491e58716dc01e57c25e"
-    version "0.9.0-rc19"
+    url "https://github.com/influxdb/influxdb/archive/v0.9.0-rc27.tar.gz"
+    sha1 "4578e90994ce22f5167990fb304f09941b36746d"
+    version "0.9.0-rc27"
   end
 
   depends_on "go" => :build
@@ -96,14 +97,13 @@ class Influxdb < Formula
       Language::Go.stage_deps resources, buildpath/"src"
 
       cd influxdb_path do
-        system "go", "build", "-ldflags", "-X main.version 0.9.0-rc16 -X main.commit 035500fb9ff1d8a8fb4f20762e14ed672a0c1d6e", "./..."
+        system "go", "build", "-ldflags", "-X main.version 0.9.0-rc27 -X main.commit c887dfe2a86ca7dc6a06710b6a787d37734a23b4", "./..."
         system "go", "install", "./..."
       end
 
       inreplace influxdb_path/"etc/config.sample.toml" do |s|
-        s.gsub! "/tmp/influxdb/development/db", "#{var}/influxdb/data"
-        s.gsub! "/tmp/influxdb/development/raft", "#{var}/influxdb/raft"
-        s.gsub! "/tmp/influxdb/development/state", "#{var}/influxdb/state"
+        s.gsub! "/var/opt/influxdb/db", "#{var}/influxdb/data"
+        s.gsub! "/var/opt/influxdb/raft", "#{var}/influxdb/raft"
       end
 
       bin.install buildpath/"bin/influxd" => "influxd"
